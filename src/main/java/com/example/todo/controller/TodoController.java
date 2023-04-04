@@ -37,7 +37,7 @@ public class TodoController {
 			log.info("Log : dto => entity ok!");
 			
 			// entity userId를 임시로 저장한다.
-			entity.setUserId("temporary-userid");
+			entity.setUserId("temporary-user");
 			
 			// service.create 를 통해 repository에 entity를 저장한다.
 			// 이때 넘어노는 값이 없을 수도 있으므로 List가 아닌 Optional 로 한다.
