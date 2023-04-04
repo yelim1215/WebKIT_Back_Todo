@@ -51,7 +51,7 @@ public class TodoController {
 			
 			// Response DTO를 생성한다.
 			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(dtos).build();
-			log.info("Log : rewponsed to ok!");
+			log.info("Log : responsed to ok!");
 			
 			// HTTP Status 200 상태로 response를 전송한다.
 			return ResponseEntity.ok().body(response);
