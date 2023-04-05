@@ -2,11 +2,13 @@ package com.example.todo.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.todo.model.TodoEntity;
 import com.example.todo.persistence.TodoRepository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -61,6 +63,15 @@ public class TodoService {
 		*/
 		return repository.findById(entity.getId());
 		}
+	
+	public String delete(final String id) {
+		if (repository.existsById(id))
+			repository.deleteById(id);
+		else
+			throw new RuntimeException("id does not exist");
+		
+		return "Deleted";
+	}
 	
 	public void validate(final TodoEntity entity) {
 		if (entity == null) {
