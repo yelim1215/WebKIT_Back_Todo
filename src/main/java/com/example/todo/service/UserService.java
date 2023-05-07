@@ -1,5 +1,7 @@
 package com.example.todo.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,21 @@ public class UserService {
 		
 		return userRepository.save(userEntity);
 	}
+	
+	// 회원 정보 수정 메소드
+	
+	@Transactional
+	public UserEntity updateUn(String email, String newUsername) {
+	    final UserEntity user = userRepository.findByEmail(email);
+	    if (user == null || user.getEmail() == null) {
+	        throw new RuntimeException("회원 정보를 찾을 수 없습니다.");
+	    }
+	    log.info(email);
+	    user.setUsername(newUsername);
+	    
+	    return userRepository.save(user);
+	}
+	
 	public UserEntity getByCredentials(final String email, final String password, final PasswordEncoder encoder) {
 		final UserEntity originalUser = userRepository.findByEmail(email);
 		if (originalUser != null && encoder.matches(password, originalUser.getPassword())) {

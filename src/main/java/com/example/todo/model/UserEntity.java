@@ -34,5 +34,11 @@ public class UserEntity {
 	
 	@Column(nullable=false)
 	private String password;
+	
+	@Column(nullable=false)
+	private String phonenum;
+	
+	@Column(nullable=false)
+	private String gender;
 
 }
